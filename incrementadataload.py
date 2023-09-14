@@ -19,17 +19,17 @@ def customers_updated_table():
     filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
     filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\customers_updated_table1")
 # #2nd report
-def items_updated_table():
-    df = spark.read.parquet(input_path_items)
-    latest_date = df.selectExpr("max(created_date) as max_date").collect()[0]["max_date"]
-    print("Latest Date:", latest_date)
-    db_items = spark.read.jdbc(url=db_properties["url"], table='items', properties=db_properties)
-    #db_items.show()
-    filtered_db_df = db_items.filter(db_items["created_date"] > latest_date)
-    filtered_db_df.show()
-    table_name = "items_updated_table1"
-    filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
-    filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\items_updated_table1")
+# def items_updated_table():
+#     df = spark.read.parquet(input_path_items)
+#     latest_date = df.selectExpr("max(created_date) as max_date").collect()[0]["max_date"]
+#     print("Latest Date:", latest_date)
+#     db_items = spark.read.jdbc(url=db_properties["url"], table='items', properties=db_properties)
+#     #db_items.show()
+#     filtered_db_df = db_items.filter(db_items["created_date"] > latest_date)
+#     filtered_db_df.show()
+#     table_name = "items_updated_table1"
+#     filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
+#     filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\items_updated_table1")
 #3rd report
 def order_details_updated_table():
     df = spark.read.parquet(input_path_details)
@@ -43,17 +43,17 @@ def order_details_updated_table():
     filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
     filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\order_details_updated_table1")
 #4th report
-def orders_updated_table():
-    df = spark.read.parquet(input_path_orders)
-    latest_date = df.selectExpr("max(created_date) as max_date").collect()[0]["max_date"]
-    print("Latest Date:", latest_date)
-    db_orders = spark.read.jdbc(url=db_properties["url"], table='orders', properties=db_properties)
-    #db_customers.show()
-    filtered_db_df = db_orders.filter(db_orders["created_date"] > latest_date)
-    filtered_db_df.show()
-    table_name = "orders_updated_table1"
-    filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
-    filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\orders_updated_table1")
+# def orders_updated_table():
+#     df = spark.read.parquet(input_path_orders)
+#     latest_date = df.selectExpr("max(created_date) as max_date").collect()[0]["max_date"]
+#     print("Latest Date:", latest_date)
+#     db_orders = spark.read.jdbc(url=db_properties["url"], table='orders', properties=db_properties)
+#     #db_customers.show()
+#     filtered_db_df = db_orders.filter(db_orders["created_date"] > latest_date)
+#     filtered_db_df.show()
+#     table_name = "orders_updated_table1"
+#     filtered_db_df.write.mode("append").jdbc(db_properties["url"], table_name, properties=db_properties)
+#     filtered_db_df.write.mode("append").parquet("C:\Parquet\Localpath1\orders_updated_table1")
 #5th report
 def salesperson_updated_table():
     df = spark.read.parquet(input_path_sales)
@@ -100,9 +100,9 @@ if __name__ == "__main__":
 
     # Call the generate_monthly_report method for each report
     customers_updated_table()#1
-    items_updated_table()#2
+    # items_updated_table()#2
     order_details_updated_table()#3
-    orders_updated_table()#4
+    # orders_updated_table()#4
     salesperson_updated_table()#5
     ship_to_updated_table()#6
     #Stop the Spark session
